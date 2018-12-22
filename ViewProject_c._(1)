@@ -1,0 +1,29 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+using namespace std;
+int main()
+{
+	int choice;
+	string line;
+	
+	cout << "1. specific" << endl;
+	cout << "2. completed" << endl;
+	cout << "3. all" << endl;
+	cout<<"Enter choice: ";
+	cin>>choice;
+  
+if (choice== 3)
+	{
+	ifstream softeng ("C:\\cpefinal\\Softeng.txt");
+  			if (softeng.is_open())
+ 		 {
+   			 while ( getline (softeng,line) )
+    		{
+     	 		cout << line << '\n';
+    		}
+   	 		softeng.close();
+  			}
+ 			 else cout << "Unable to open file"; 	
+ 		}
+}
