@@ -1,0 +1,24 @@
+#include<iostream>
+#include<fstream>
+#include<iomanip>
+using namespace std;
+int main()
+{
+	string title;
+	int id,size,priority;	
+	cout << "\nProject Details" << endl;
+	cout << "ID Number: ";
+	cin >> id;
+	cout<< "Title: " ;
+	cin >> title;
+	cout << "Size: " ;
+	cin >> size;
+	cout << "Priority: ";
+	cin >> priority;	
+			ofstream softeng("C:\\cpefinal\\Softeng.txt", ios::app);
+			softeng << "------------------------------------------------" << endl;
+			softeng << " ID Number:  "<<setw(10)<< " Title: "<<setw(10)<< " Size: " <<setw(10)<< " Priority: "<<endl;
+			softeng <<setw(10)<< id<<setw(10)<< title<<setw(10)<< size<<setw(10)<< priority<<endl;
+			softeng.close();
+	return 0;
+}
