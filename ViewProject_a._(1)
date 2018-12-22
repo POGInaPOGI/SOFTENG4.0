@@ -1,0 +1,30 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<iomanip>
+using namespace std;
+int main(){
+ifstream dataIn;
+	dataIn.open("C:\\cpefinal\\Softeng.txt");
+	string temp;
+	string line;
+	string word;
+	cout << "Search ID: ";
+	cin >> word;
+	if (dataIn.is_open())
+	{	
+		while (getline(dataIn, temp))
+		{
+			line.append(temp);
+			if (line.find(word) != string::npos)
+			{	
+				cout << "User details: " << endl;
+				cout << " ID Number:  "<<setw(10)<< " Title: "<<setw(10)<< " Size: " <<setw(10)<< " Priority: "<<endl;
+				cout << temp << endl;
+				cout << endl;
+				break;
+			}
+		}
+		dataIn.close();
+	}
+}
