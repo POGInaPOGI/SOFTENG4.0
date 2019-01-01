@@ -1,0 +1,116 @@
+#include<iostream>
+#include<fstream>
+#include<string>
+#include<iomanip>
+using namespace std;
+
+struct soft
+{
+	int choice;
+	string line;
+	string temp;
+	string word;
+	string title;
+	int size,priority,id;
+};
+
+void one()
+{
+	
+	soft s1;
+	cout << "\nProject Details" << endl;
+	cout << "ID Number: ";
+	cin >> s1.id;
+	cout<< "Title: " ;
+	cin >> s1.title;
+	cout << "Size: " ;
+	cin >> s1.size;
+	cout << "Priority: ";
+	cin >> s1.priority;	
+			ofstream softeng("C:\\cpefinal\\Softeng.txt", ios::app);
+			softeng << "------------------------------------------------" << endl;
+			softeng << " ID Number:  "<<setw(10)<< " Title: "<<setw(10)<< " Size: " <<setw(10)<< " Priority: "<<endl;
+			softeng <<setw(10)<< s1.id<<setw(10)<< s1.title<<setw(10)<< s1.size<<setw(10)<< s1.priority<<endl;
+softeng.close();
+softeng.close();
+}
+
+
+void two ()
+{
+	soft s2;
+	
+	
+	cout << "1. specific" << endl;
+	cout << "2. completed" << endl;
+	cout << "3. all" << endl;
+	cout<<"Enter choice: ";
+	cin>>s2.choice;
+	
+	if (s2.choice==1)
+	{
+		ifstream dataIn;
+	dataIn.open("C:\\cpefinal\\Softeng.txt");
+
+	cout << "Search ID: ";
+	cin >> s2.word;
+	if (dataIn.is_open())
+	{	
+		while (getline(dataIn, s2.temp))
+		{
+			s2.line.append(s2.temp);
+			if (s2.line.find(s2.word) != string::npos)
+			{	
+				cout << "User details: " << endl;
+				cout << " ID Number:  "<<setw(10)<< " Title: "<<setw(10)<< " Size: " <<setw(10)<< " Priority: "<<endl;
+				cout << s2.temp << endl;
+				cout << endl;
+				break;
+			}
+		}
+		dataIn.close();
+	}
+	}
+	else if (s2.choice== 3)
+	{
+	ifstream softeng ("C:\\cpefinal\\Softeng.txt");
+		  
+
+  			if (softeng.is_open())
+ 		 {
+   			 while ( getline (softeng,s2.line) )
+    		{
+     	 		cout << s2.line << '\n';
+    		}
+   	 		softeng.close();
+  			}
+ 			 else cout << "Unable to open file"; 	
+ 		}
+}
+
+
+
+int main()
+{
+	int input;
+	cout << "1. Input project details" << endl;
+	cout << "2. View project details" << endl;
+	cin >> input;
+	switch(input)
+	{
+		case 1:
+			{
+				one();
+			break;
+			}
+			case 2:
+				{
+					two();
+					break;
+				}
+				case 3:
+					{
+						
+					}
+	}
+}
