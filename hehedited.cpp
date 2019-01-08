@@ -164,7 +164,8 @@ int main(){
 	menu();
 }
 
-void menu (){ //Main Menu
+void menu (){ //Main Menu 
+	soft s1;
 	while(1){
 		X0:	system("cls");
 		header();
@@ -181,31 +182,30 @@ void menu (){ //Main Menu
 					cout << "a.) One Project" << endl;
 					cout << "b.) Completed Project" << endl;
 					cout << "c.) All Project" <<endl;
+					cout << "d.) Go back" <<endl;
 					cout << "Choose from the following: " ;
-					switch(_getch()){
+						switch(tolower(_getch())){
 						system("cls");
-						case 'a':
-						case 'A': view1(); break;
-						case 'b': 
-						case 'B': viewC(); break;
-						case 'c':
-						case 'C': viewA(); break;
-						default : goto X1; break;
+						case 'a': view1(); s1.validator=true; break;
+						case 'b': viewC(); s1.validator=true; break;
+						case 'c': viewA(); s1.validator=true; break;
+						case 'd':  s1.validator=true;break;
+						default : break;
 					};
 				break;
 			case '3': 						//Menu Option 3: Schedule Projects
 				X2:	system("cls");
 					cout << "a.) View Updated Schedule" << endl;
 					cout << "b.) Create Schedule" << endl;
+					cout << "c.) Go back" << endl;
 					cout << "Choose from the following: " ;
-					switch(_getch()){
+					switch(tolower(_getch())){
 						system("cls");
-						case 'a':
-						case 'A': viewS(); break;
-						case 'b': 
-						case 'B': makeS(); break;
-						default : goto X2; break;
-					};
+						case 'a':viewS();s1.validator=true; break;
+						case 'b': makeS();s1.validator=true; break;
+						case 'c':s1.validator=true; break;
+						default : break;
+			};
 				break;
 			case '4': get(); break;			//Menu Option 4: Get Project
 			case '5': exit(0); break;		//Menu Option 5: Exit
@@ -213,7 +213,7 @@ void menu (){ //Main Menu
 		}
 	}
 }
-void InputProject(){
+void InputProject(){ 
 	system("cls");
 	soft s1;
 	fstream fileNamen (inputs.c_str());
@@ -222,8 +222,7 @@ void InputProject(){
 	while (fileNamen.getline(s1.title,50,'\n'))s1.id=s1.id+1;
 	fileNamen.close();
 	
-	fileNamen.open(inputs.c_str(),ios::app);
-
+	
 	cout << "Enter title: ";
 	cin >> s1.title; 
 	s1.validator=true;
@@ -269,7 +268,7 @@ void InputProject(){
 			}
 		}	
 	}
-	
+	fileNamen.open(inputs.c_str(),ios::app);
 	fileNamen << s1.id << " " << s1.title << " " <<s1.size << " " << s1.prio << endl;
 	fileNamen.close();
 	
@@ -314,7 +313,7 @@ void view1(){
 		}
 	}
 	if (s1.search==s1.id) {
-			//cout << endl << "ID: " << s1.id << endl << "Title: " << s1.title << endl << "No. of Pages: " << s1.size << endl << "Priority Number: " << s1.prio<<endl;
+			
 		cout<<endl<<"ID:    Title:                    No. of Pages:  Priority Number:\n";
 		cout<<left<<setw(7)<<s1.id<<setw(26)<<s1.title<<setw(8)<< ""<<s1.size<<setw(13)<< ""<<s1.prio<<"\n";}
 	else 
